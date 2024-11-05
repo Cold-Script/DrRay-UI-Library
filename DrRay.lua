@@ -1291,7 +1291,7 @@ parent.TopBar.ProfileMenu.PlayerProfile.TextLabel.Text = game:GetService("Player
 parent.TopBar.ProfileMenu.PlayerProfile.ImageLabel.Image = game:GetService("Players"):GetUserThumbnailAsync(game.Players.LocalPlayer.UserId, Enum.ThumbnailType.HeadShot, Enum.ThumbnailSize.Size100x100)
 
 
-function UILIB:Load(name, img, direction)
+function UILIB:Window(name, img, direction)
 	local self = setmetatable({}, UILIB)
 	task.spawn(function()
 			local tw = twServ:Create(parent.MainBar, TweenInfo.new(0.4, Enum.EasingStyle.Linear, Enum.EasingDirection.Out), { Position = UDim2.new(0.23, 0,0.212, 0) })
@@ -1442,7 +1442,7 @@ end
 
 
 
-function UILIB.newTab(name, img)	
+function UILIB:AddTab(name, img)	
 	local self = setmetatable({}, UILIB)
 
 	local newTab = parent.Folder.TabReserved:Clone()
@@ -1483,7 +1483,7 @@ function UILIB.newTab(name, img)
 		end
 	end)
 
-	function self.newButton(name, desc, func)
+	function self:AddButton(name, desc, func)
 		local newbtn = reserved.Button:Clone()
 		newbtn.Parent = newTab
 		newbtn.Title.Text = name
@@ -1504,7 +1504,7 @@ function UILIB.newTab(name, img)
 		newbtn.MouseButton1Click:Connect(func)
 	end
 
-	function self.newLabel(text)
+	function self:AddLabel(text)
 		local newLabel = reserved.Label:Clone()
 		newLabel.Parent = newTab
 		newLabel.Visible = true
@@ -1513,7 +1513,7 @@ function UILIB.newTab(name, img)
 		return newLabel.Title
 	end
 
-        function self.editLabel(newLabel, text)
+        function self:AddDerscription(newLabel, text)
 		newLabel.Parent = newTab
 		newLabel.Visible = true
 		newLabel.Title.Text = text
@@ -1521,7 +1521,7 @@ function UILIB.newTab(name, img)
 		return newLabel.Title
         end
 
-	function self.newInput(name, desc, func)
+	function self:AddInput(name, desc, func)
 		local newInput = reserved.Textbox:Clone()
 		local textbox = newInput.TextboxBar.ActualTextbox
 
@@ -1550,7 +1550,7 @@ function UILIB.newTab(name, img)
 
 	end
 
-	function self.newKeybind(name, desc, func)
+	function self:AddKeybind(name, desc, func)
 		local newKey = reserved.Keybind:Clone()
 
 
@@ -1619,7 +1619,7 @@ function UILIB.newTab(name, img)
 	end
 
 
-	function self.newSlider(name, desc, max, manageSlider, func)
+	function self:AddSlider(name, desc, max, manageSlider, func)
 		local newSlider = reserved.Slider:Clone()
 
 		newSlider.MouseEnter:Connect(function()
@@ -1679,7 +1679,7 @@ function UILIB.newTab(name, img)
 
 	end
 	
-	function self.newToggle(title, desc, toggle, func)
+	function self:AddToggle(title, desc, toggle, func)
 		local realToggle = toggle
 		local newToggle = reserved.Toggle:Clone()
 		newToggle.Parent = newTab
@@ -1728,7 +1728,7 @@ function UILIB.newTab(name, img)
 		
 	end
 	
-	function self.newDropdown(name, desc, listTable, func)
+	function self:AddDropdown(name, desc, listTable, func)
 		local newdd = reserved.Dropdown:Clone()
 		newdd.Visible = true
 		newdd.Parent = newTab
